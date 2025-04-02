@@ -59,6 +59,13 @@ public class ExamController {
         System.out.println("🔍 가져온 시험 목록: " + exams);
         return ResponseEntity.ok(exams);
     }
+    
+    // 시험 게시판 생성 (Exam_Board)
+    @PostMapping("/board")
+    public ResponseEntity<String> createQuizBoard(@RequestParam("classId") int classId) {
+        examService.createQuizBoard(classId);
+        return ResponseEntity.ok("퀴즈 게시판이 생성되었습니다.");
+    }
 
     // 특정 시험 상세 보기 (시험과 질문 포함)
     @GetMapping("/{examId}")
@@ -85,12 +92,6 @@ public class ExamController {
         return ResponseEntity.ok(exam); // 수정된 시험 객체 반환
     }
     
- // 시험 게시판 생성 (Exam_Board)
-    @PostMapping("/board")
-    public ResponseEntity<String> createQuizBoard(@RequestParam("classId") int classId) {
-        examService.createQuizBoard(classId);
-        return ResponseEntity.ok("퀴즈 게시판이 생성되었습니다.");
-    }
 
  // 학생이 시험을 제출
     @PostMapping("/submit")
