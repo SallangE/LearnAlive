@@ -56,7 +56,6 @@ const totalCredits = useMemo(() => {
       webSocketFactory: () => socket,
       reconnectDelay: 5000,
       onConnect: () => {
-        console.log("📡 WebSocket 연결됨 (Final)");
   
         // ✅ 실시간 본 수강신청 인원 수신
         stompClient.subscribe('/topic/finalCounts', (message) => {
