@@ -68,7 +68,7 @@ public interface ScheduleMapper {
     	        -- 학생의 경우
     	        SELECT s.class_id
     	        FROM student_class s
-    	        JOIN Student st ON s.student_id = st.student_id
+    	        JOIN student st ON s.student_id = st.student_id
     	        WHERE st.student_id = #{userId}
 
     	    )

@@ -37,7 +37,7 @@ public interface ProjectMemberMapper {
     		  s.phone AS contact, 
     		  pm.approved_at
     		FROM project_member pm
-    		JOIN Student s ON pm.student_id = s.student_id
+    		JOIN student s ON pm.student_id = s.student_id
     		WHERE pm.post_id = #{postId}
     		""")
     		@Results({

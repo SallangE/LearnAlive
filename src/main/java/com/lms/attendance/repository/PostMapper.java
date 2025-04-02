@@ -18,7 +18,7 @@ import com.lms.attendance.model.Post;
 public interface PostMapper {
 
 	@Insert("""
-			    INSERT INTO Post (post_id, board_id, author_id, author_role, author, title, content, file_path)
+			    INSERT INTO post (post_id, board_id, author_id, author_role, author, title, content, file_path)
 			    VALUES (#{postId}, #{boardId}, #{authorId}, #{authorRole}, #{author}, #{title}, #{content}, #{filePath})
 			""")
 	@Results({ @Result(property = "postId", column = "post_id"), @Result(property = "boardId", column = "board_id"),
@@ -30,12 +30,12 @@ public interface PostMapper {
 	@Delete("DELETE FROM post WHERE post_id = #{postId}")
 	void deletePostByPostId(int postId);
 
-	@Update("UPDATE Post SET view = view + 1 WHERE post_id = #{postId}")
+	@Update("UPDATE post SET view = view + 1 WHERE post_id = #{postId}")
 	void increaseViewCount(@Param("postId") int postId);
 
 	// ---------------게시글 수정 기능
 	@Update("""
-			    UPDATE Post
+			    UPDATE post
 			    SET title = #{title}, content = #{content}
 			    WHERE post_id = #{postId}
 			""")
@@ -90,11 +90,11 @@ public interface PostMapper {
 	int getTotalLikes(int postId);
 
 	// 좋아요
-	@Update("UPDATE Post SET likes = likes + 1 WHERE post_id = #{postId}")
+	@Update("UPDATE post SET likes = likes + 1 WHERE post_id = #{postId}")
 	void incrementLikes(@Param("postId") int postId);
 
 	// 게시글 좋아요 수 감소
-	@Update("UPDATE Post SET likes = likes - 1 WHERE post_id = #{postId}")
+	@Update("UPDATE post SET likes = likes - 1 WHERE post_id = #{postId}")
 	void decrementLikes(@Param("postId") int postId);
 
 	

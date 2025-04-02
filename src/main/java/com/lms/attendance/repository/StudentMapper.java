@@ -18,14 +18,14 @@ public interface StudentMapper {
 
 	// ✅ 학생 등록 (INSERT)
 		@Insert("""
-			    INSERT INTO Student (student_id, university, department, name, phone, email, password)
+			    INSERT INTO student (student_id, university, department, name, phone, email, password)
 			    VALUES (#{studentId}, #{university}, #{department}, #{name}, #{phone}, #{email}, #{password})
 			""")
 			void registerStudent(Student student);
 	
     // ✅ 학생 등록 (INSERT)
 //	@Insert("""
-//		    INSERT INTO Student (student_id, university, department, name, email, remarks)
+//		    INSERT INTO student (student_id, university, department, name, email, remarks)
 //		    VALUES (#{studentId}, #{university}, #{department}, #{name}, #{email}, #{remarks})
 //		""")
 //		void registerStudent(Student student);
@@ -47,7 +47,7 @@ public interface StudentMapper {
 		@Select("""
 			    SELECT s.student_id, s.university, s.department, s.name, s.email, sc.class_id, sc.remarks
 			    FROM student_class sc
-			    JOIN Student s ON sc.student_id = s.student_id
+			    JOIN student s ON sc.student_id = s.student_id
 			    WHERE sc.class_id = #{classId}
 			    ORDER BY 
 			        s.university ASC,
@@ -68,7 +68,7 @@ public interface StudentMapper {
 
     // ✅ 학생 정보 업데이트 (UPDATE)
 		@Update("""
-			    UPDATE Student
+			    UPDATE student
 			    SET university = #{university}, 
 			        department = #{department}, 
 			        name = #{name}, 
@@ -142,6 +142,6 @@ public interface StudentMapper {
     Student findByIdAndNameAndPhone(@Param("studentId") String studentId, @Param("name") String name, @Param("phone") String phone);
 
     // ✅ [추가] 학습자 비밀번호 재설정: 새 비밀번호로 업데이트 (암호화된 비밀번호 사용)
-    @Update("UPDATE Student SET password = #{encryptedPassword} WHERE student_id = #{studentId}")
+    @Update("UPDATE student SET password = #{encryptedPassword} WHERE student_id = #{studentId}")
     void updateStudentPassword(@Param("studentId") String studentId, @Param("encryptedPassword") String encryptedPassword);
     }

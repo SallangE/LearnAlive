@@ -52,7 +52,7 @@ public interface SurveyResponseMapper {
                 ELSE '미응답'
             END AS responseStatus
         FROM student_class sc
-        INNER JOIN Student s ON sc.student_id = s.student_id
+        INNER JOIN student s ON sc.student_id = s.student_id
         LEFT JOIN (
             SELECT DISTINCT user_id
             FROM survey_response
@@ -78,7 +78,7 @@ public interface SurveyResponseMapper {
                 s.department AS department
             FROM survey_response sr
             JOIN survey_question q ON sr.question_id = q.question_id
-            LEFT JOIN Student s ON sr.user_id = s.student_id
+            LEFT JOIN student s ON sr.user_id = s.student_id
             WHERE q.survey_id = #{surveyId}
             ORDER BY q.question_id ASC, s.student_id ASC
             """)

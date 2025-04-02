@@ -23,7 +23,7 @@ import com.lms.attendance.model.StudentExamResult;
 public interface ExamMapper {
 
 	//새로운 시험 추가
-    @Insert("INSERT INTO Exam (class_id, prof_id, prof_name, title, start_time, end_time, question_count) VALUES (#{classId}, #{profId}, #{profName}, #{title}, #{startTime}, #{endTime}, #{questionCount})")
+    @Insert("INSERT INTO exam (class_id, prof_id, prof_name, title, start_time, end_time, question_count) VALUES (#{classId}, #{profId}, #{profName}, #{title}, #{startTime}, #{endTime}, #{questionCount})")
     @Options(useGeneratedKeys = true, keyProperty = "examId")
     void createExam(Exam exam);
 
@@ -31,7 +31,7 @@ public interface ExamMapper {
     @Select("""
     	    SELECT e.*, es.score
     	    FROM exam e
-    	    LEFT JOIN Exam_Submission es 
+    	    LEFT JOIN exam_submission es 
     	      ON e.exam_id = es.exam_id AND es.student_id = #{studentId}
     	    WHERE e.class_id = #{classId}
     	""")
@@ -73,7 +73,7 @@ public interface ExamMapper {
 
     
     //시험 수정
-    @Update("UPDATE Exam SET title = #{exam.title}, prof_name = #{exam.profName}, start_time = #{exam.startTime}, end_time = #{exam.endTime} WHERE exam_id = #{exam.examId}")
+    @Update("UPDATE exam SET title = #{exam.title}, prof_name = #{exam.profName}, start_time = #{exam.startTime}, end_time = #{exam.endTime} WHERE exam_id = #{exam.examId}")
     void updateExam(@Param("exam") Exam exam);
 
     
@@ -82,7 +82,7 @@ public interface ExamMapper {
     List<Exam> findAll();
     
     
-    @Insert("INSERT INTO Exam_Question (exam_id, question_text, question_type, correct_answer) VALUES (#{examId}, #{questionText}, #{questionType}, #{correctAnswer})")
+    @Insert("INSERT INTO exam_question (exam_id, question_text, question_type, correct_answer) VALUES (#{examId}, #{questionText}, #{questionType}, #{correctAnswer})")
     void createExamQuestion(ExamQuestion question); // 문제 저장
 
     // examId 기준으로 모든 학생의 시험 결과 조회
@@ -94,7 +94,7 @@ public interface ExamMapper {
     List<StudentExamResult> findExamResultsByExamId(@Param("examId") int examId);
     
     // Exam_Board 생성
-    @Insert("INSERT INTO Exam_Board (class_id) VALUES (#{classId})")
+    @Insert("INSERT INTO exam_board (class_id) VALUES (#{classId})")
     void createExamBoard(@Param("classId") int classId);
 
     // Exam_Board 조회

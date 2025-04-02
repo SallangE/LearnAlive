@@ -32,7 +32,7 @@ public interface AttendanceMapper {
 			@Param("date") String date);
 
 	// ✅ 학생 출석 시도 (Attendance 객체를 받아 처리)
-	@Insert("INSERT INTO Attendance (student_id, class_id, date, state, created_at, updated_at) " +
+	@Insert("INSERT INTO attendance (student_id, class_id, date, state, created_at, updated_at) " +
 	        "VALUES (#{studentId}, #{classId}, #{date}, " +
 	        "CASE WHEN TIME(NOW()) BETWEEN (SELECT present_start FROM class WHERE class_id = #{classId}) " +
 	        "AND (SELECT present_end FROM class WHERE class_id = #{classId}) THEN 'present' " +
@@ -59,12 +59,12 @@ public interface AttendanceMapper {
 			        COALESCE(a.created_at, NULL) AS created_at,
 			        COALESCE(a.updated_at, NULL) AS updated_at
 			    FROM student_class sc
-			    JOIN Student s ON s.student_id = sc.student_id
-			    LEFT JOIN Attendance a
+			    JOIN student s ON s.student_id = sc.student_id
+			    LEFT JOIN attendance a
 			        ON s.student_id = a.student_id
 			        AND a.class_id = #{classId}
 			        AND a.date = #{date}
-			    LEFT JOIN Class c
+			    LEFT JOIN class c
 			        ON sc.class_id = c.class_id
 			    WHERE sc.class_id = #{classId}
 			""")
@@ -79,7 +79,7 @@ public interface AttendanceMapper {
 	List<Attendance> findAttendanceByClassAndDate(@Param("classId") int classId, @Param("date") String date);
 
 	@Insert("""
-			    INSERT INTO Attendance (student_id, class_id, date, state, created_at, updated_at)
+			    INSERT INTO attendance (student_id, class_id, date, state, created_at, updated_at)
 			    SELECT #{studentId}, #{classId}, #{date}, #{state}, NOW(), NOW()
 			    FROM DUAL
 			    WHERE NOT EXISTS (
@@ -93,14 +93,14 @@ public interface AttendanceMapper {
 			@Param("date") String date, @Param("state") String state);
 
 	@Update("""
-			    UPDATE Attendance
+			    UPDATE attendance
 			    SET state = #{state}, updated_at = NOW()
 			    WHERE attendance_id = #{attendanceId}
 			""")
 	void updateAttendanceState(@Param("attendanceId") int attendanceId, @Param("state") String state);
 
 	@Update("""
-			    UPDATE Attendance
+			    UPDATE attendance
 			    SET reason = #{reason}, updated_at = NOW()
 			    WHERE attendance_id = #{attendanceId}
 			""")
@@ -197,7 +197,7 @@ public interface AttendanceMapper {
 				        a.created_at,
 				        a.updated_at
 				    FROM attendance a
-				    JOIN Student s ON a.student_id = s.student_id
+				    JOIN student s ON a.student_id = s.student_id
 				    WHERE a.class_id = #{classId}
 				      AND a.date LIKE CONCAT(#{month}, '%')
 				""")

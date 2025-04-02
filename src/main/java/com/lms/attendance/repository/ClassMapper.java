@@ -69,7 +69,7 @@ public interface ClassMapper {
 
 	// ✅ 출석 시간 업데이트
 	@Update("""
-			    UPDATE Class
+			    UPDATE class
 			    SET start_time = #{startTime},
 			        end_time = #{endTime},
 			        present_start = #{presentStart},
@@ -88,7 +88,7 @@ public interface ClassMapper {
 			        p.name AS professor_name,
 			        p.email AS professor_email
 			    FROM class c
-			    JOIN Professor p ON c.prof_id = p.prof_id
+			    JOIN professor p ON c.prof_id = p.prof_id
 			    WHERE c.class_id = #{classId}
 			""")
 	@Results({ @Result(column = "class_id", property = "classId"),
@@ -100,14 +100,14 @@ public interface ClassMapper {
 	ClassDetail findClassDetailById(int classId);
 
 // 강의 설명 업데이트
-	@Update("UPDATE Class SET description = #{description} WHERE class_id = #{classId}")
+	@Update("UPDATE class SET description = #{description} WHERE class_id = #{classId}")
 	void updateClassDescription(@Param("classId") int classId, @Param("description") String description);
 
 	@Select("SELECT present_start, present_end, late_end FROM class WHERE class_id = #{classId}")
 	ClassSettings getClassSettings(@Param("classId") int classId);
 	
 	@Update("""
-			   UPDATE Class
+			   UPDATE class
 			   SET score = #{score},
 			       grade = #{grade}
 			   WHERE class_id = #{classId}

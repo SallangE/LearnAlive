@@ -11,12 +11,12 @@ import org.apache.ibatis.annotations.*;
 public interface ExamSubmissionMapper {
 
     // 1. 시험 제출 정보 저장 
-    @Insert("INSERT INTO Exam_Submission (exam_id, student_id, submitted_at) VALUES (#{examId}, #{studentId}, #{submittedAt})")
+    @Insert("INSERT INTO exam_submission (exam_id, student_id, submitted_at) VALUES (#{examId}, #{studentId}, #{submittedAt})")
     @Options(useGeneratedKeys = true, keyProperty = "submissionId")
     void insertExamSubmission(ExamSubmission submission);
 
     // 2. 학생 답변 저장
-    @Insert("INSERT INTO Exam_Answer (submission_id, question_id, student_id, exam_id, answer, is_correct) VALUES (#{submissionId}, #{questionId}, #{studentId}, #{examId}, #{answer}, #{isCorrect})")
+    @Insert("INSERT INTO exam_answer (submission_id, question_id, student_id, exam_id, answer, is_correct) VALUES (#{submissionId}, #{questionId}, #{studentId}, #{examId}, #{answer}, #{isCorrect})")
     void insertExamAnswer(ExamAnswer answer);
 
     // 3. 정답 조회
@@ -38,7 +38,7 @@ public interface ExamSubmissionMapper {
     List<ExamQuestion> getCorrectAnswer(@Param("examId") int examId);
 
     // 4. 최종 점수 업데이트
-    @Update("UPDATE Exam_Submission SET score = #{score} WHERE submission_id = #{submissionId}")
+    @Update("UPDATE exam_submission SET score = #{score} WHERE submission_id = #{submissionId}")
     void updateExamScore(ExamSubmission submission);
 
     

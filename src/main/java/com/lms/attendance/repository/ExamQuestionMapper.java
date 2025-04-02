@@ -10,7 +10,7 @@ import com.lms.attendance.model.ExamQuestion;
 public interface ExamQuestionMapper {
     
     // 시험 문제 등록
-	@Insert("INSERT INTO Exam_Question (exam_id, question_title, question_text, correct_answer,  answer1, answer2, answer3, answer4) " +
+	@Insert("INSERT INTO exam_question (exam_id, question_title, question_text, correct_answer,  answer1, answer2, answer3, answer4) " +
 	        "VALUES (#{examId}, #{questionTitle}, #{questionText}, #{correctAnswer}, #{answer1}, #{answer2}, #{answer3}, #{answer4})")
     @Options(useGeneratedKeys = true, keyProperty = "questionId")
     void createExamQuestion(ExamQuestion question);

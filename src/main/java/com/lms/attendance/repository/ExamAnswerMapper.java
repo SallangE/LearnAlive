@@ -9,7 +9,7 @@ import java.util.List;
 public interface ExamAnswerMapper {
 
     // 1. 답안 저장
-    @Insert("INSERT INTO Exam_Answer (submission_id, question_id, answer, is_correct) " +
+    @Insert("INSERT INTO exam_answer (submission_id, question_id, answer, is_correct) " +
             "VALUES (#{submissionId}, #{questionId}, #{answer}, #{isCorrect})")
     void insertExamAnswer(ExamAnswer answer);
 
@@ -37,6 +37,6 @@ public interface ExamAnswerMapper {
     List<ExamAnswer> getExamAnswersByStudent(@Param("examId") int examId, @Param("studentId") String studentId);
 
     // 4. 답안 업데이트 (정답 여부 등)
-    @Update("UPDATE Exam_Answer SET is_correct = #{isCorrect} WHERE answer_id = #{answerId}")
+    @Update("UPDATE exam_answer SET is_correct = #{isCorrect} WHERE answer_id = #{answerId}")
     void updateExamAnswer(ExamAnswer answer);
 }
