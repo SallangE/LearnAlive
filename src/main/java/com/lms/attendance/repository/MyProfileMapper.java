@@ -27,7 +27,7 @@ public interface MyProfileMapper {
 	MyPage findProfessorById(@Param("userId") String userId);
 
 
-    @Select("SELECT * FROM Student WHERE student_id = #{userId}")
+    @Select("SELECT * FROM student WHERE student_id = #{userId}")
     @Results({
         @Result(property = "userId", column = "student_id"),
         @Result(property = "role", column = "role"),
@@ -51,6 +51,6 @@ public interface MyProfileMapper {
     int updatePassword(@Param("userId") String userId, @Param("newPassword") String newPassword);
     
     // userId에 해당하는 강의실 목록을 반환하는 SQL 쿼리
-    @Select("SELECT class_name FROM Class WHERE class_id = #{classId}")
+    @Select("SELECT class_name FROM class WHERE class_id = #{classId}")
     List<String> findClassByClassId(@Param("classId") String classId);
 }

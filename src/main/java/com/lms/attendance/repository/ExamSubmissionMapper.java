@@ -23,7 +23,7 @@ public interface ExamSubmissionMapper {
 //    @Select("SELECT correct_answer FROM Exam_Question WHERE question_id = #{questionId}")
 //    int getCorrectAnswer(int questionId);
     
-    @Select("SELECT * FROM Exam_Question WHERE exam_id = #{examId} ORDER BY question_id ASC")
+    @Select("SELECT * FROM exam_question WHERE exam_id = #{examId} ORDER BY question_id ASC")
     @Results({
         @Result(property = "questionId", column = "question_id"),
         @Result(property = "examId", column = "exam_id"),
@@ -46,7 +46,7 @@ public interface ExamSubmissionMapper {
     
     
     // 5. 학생 시험 제출 내역 조회
-    @Select("SELECT * FROM Exam_Submission WHERE exam_id = #{examId} AND student_id = #{studentId}")
+    @Select("SELECT * FROM exam_submission WHERE exam_id = #{examId} AND student_id = #{studentId}")
     @Results({
         @Result(property = "submissionId", column = "submission_id"),
         @Result(property = "examId", column = "exam_id"),
@@ -58,7 +58,7 @@ public interface ExamSubmissionMapper {
 
     
  // 학생 답변 조회
-    @Select("SELECT * FROM Exam_Answer WHERE student_id = #{studentId} AND exam_id = #{examId}")
+    @Select("SELECT * FROM exam_answer WHERE student_id = #{studentId} AND exam_id = #{examId}")
     @Results({
         @Result(property = "answerId", column = "answer_id"),
         @Result(property = "submissionId", column = "submission_id"),

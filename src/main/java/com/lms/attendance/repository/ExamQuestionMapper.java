@@ -16,7 +16,7 @@ public interface ExamQuestionMapper {
     void createExamQuestion(ExamQuestion question);
 
     // 특정 시험의 문제 목록 조회
-    @Select("SELECT * FROM Exam_Question WHERE exam_id = #{examId}")
+    @Select("SELECT * FROM exam_question WHERE exam_id = #{examId}")
     @Results({
         @Result(property = "questionId", column = "question_id"),
         @Result(property = "examId", column = "exam_id"),
@@ -31,6 +31,6 @@ public interface ExamQuestionMapper {
     List<ExamQuestion> getQuestionsByExamId(@Param("examId") int examId);
 
     // 특정 시험의 모든 문제 삭제
-    @Delete("DELETE FROM Exam_Question WHERE exam_id = #{examId}")
+    @Delete("DELETE FROM exam_question WHERE exam_id = #{examId}")
     void deleteQuestionsByExamId(@Param("examId") int examId);
 }

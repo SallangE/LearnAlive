@@ -8,7 +8,7 @@ import com.lms.attendance.model.ExamScore;
 public interface ExamScoreMapper {
 	
 	@Select("SELECT es.exam_id, s.class_id, s.student_id, es.score, es.grade, s.name as studentName " +
-	        "FROM Student s LEFT JOIN exam_score es ON s.student_id = es.student_id AND s.class_id = es.class_id " +
+	        "FROM student s LEFT JOIN exam_score es ON s.student_id = es.student_id AND s.class_id = es.class_id " +
 	        "WHERE s.class_id = #{classId}")
 	@Results({
 	    @Result(property = "examId", column = "exam_id"),

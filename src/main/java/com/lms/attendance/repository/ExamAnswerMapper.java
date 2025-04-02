@@ -14,7 +14,7 @@ public interface ExamAnswerMapper {
     void insertExamAnswer(ExamAnswer answer);
 
     // 2. 답안 목록 조회 (특정 제출에 대한 모든 답안)
-    @Select("SELECT * FROM Exam_Answer WHERE submission_id = #{submissionId}")
+    @Select("SELECT * FROM exam_answer WHERE submission_id = #{submissionId}")
     @Results({
         @Result(property = "answerId", column = "answer_id"),
         @Result(property = "submissionId", column = "submission_id"),
@@ -25,7 +25,7 @@ public interface ExamAnswerMapper {
     List<ExamAnswer> getExamAnswersBySubmissionId(int submissionId);
 
     // 3. 특정 학생의 답안 조회 (시험 ID와 학생 ID로 답안 조회)
-    @Select("SELECT * FROM Exam_Answer WHERE submission_id IN (SELECT submission_id FROM Exam_Submission " +
+    @Select("SELECT * FROM exam_answer WHERE submission_id IN (SELECT submission_id FROM exam_submission " +
             "WHERE exam_id = #{examId} AND student_id = #{studentId})")
     @Results({
         @Result(property = "answerId", column = "answer_id"),

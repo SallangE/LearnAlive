@@ -31,7 +31,7 @@ public interface StudentMapper {
 //		void registerStudent(Student student);
 	
 		// ✅ 학생 로그인
-				@Select("SELECT * FROM Student WHERE student_id = #{studentId}")
+				@Select("SELECT * FROM student WHERE student_id = #{studentId}")
 				@Results({
 				    @Result(column = "student_id", property = "studentId"),
 				    @Result(column = "university", property = "university"),
@@ -97,7 +97,7 @@ public interface StudentMapper {
     	           s.department AS department,
     	           s.email AS email,
     	           sc.remarks AS remarks
-    	    FROM Student s
+    	    FROM student s
     	    LEFT JOIN student_class sc
     	      ON s.student_id = sc.student_id
     	    WHERE s.student_id LIKE CONCAT('%', #{keyword}, '%') 
@@ -116,7 +116,7 @@ public interface StudentMapper {
 
 
   //✅ [추가] 학습자 아이디 찾기: 이름과 이메일로 학생 정보 조회
-    @Select("SELECT * FROM Student WHERE name = #{name} AND email = #{email}")
+    @Select("SELECT * FROM student WHERE name = #{name} AND email = #{email}")
     @Results({
         @Result(column = "student_id", property = "studentId"),
         @Result(column = "university", property = "university"),
@@ -129,7 +129,7 @@ public interface StudentMapper {
     Student findStudentByNameAndEmail(@Param("name") String name, @Param("email") String email);
 
     // ✅ [추가] 학습자 비밀번호 재설정을 위한 정보 조회: 학생 ID, 이름, 전화번호로 학생 정보 조회
-    @Select("SELECT * FROM Student WHERE student_id = #{studentId} AND name = #{name} AND phone = #{phone}")
+    @Select("SELECT * FROM student WHERE student_id = #{studentId} AND name = #{name} AND phone = #{phone}")
     @Results({
         @Result(column = "student_id", property = "studentId"),
         @Result(column = "university", property = "university"),

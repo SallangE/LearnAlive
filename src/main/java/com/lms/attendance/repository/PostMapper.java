@@ -27,7 +27,7 @@ public interface PostMapper {
 			@Result(property = "filepath", column = "file_path") })
 	void createPost(Post newPost);
 
-	@Delete("DELETE FROM Post WHERE post_id = #{postId}")
+	@Delete("DELETE FROM post WHERE post_id = #{postId}")
 	void deletePostByPostId(int postId);
 
 	@Update("UPDATE Post SET view = view + 1 WHERE post_id = #{postId}")
@@ -44,7 +44,7 @@ public interface PostMapper {
 	);
 
 	// 모든 게시글 가져오기
-	@Select("SELECT post_id, title, DATE_FORMAT(created_at, '%Y-%m-%d %H:%i:%s') AS created_at, author_id, author_role, author, view, likes FROM Post WHERE board_id = #{boardId};")
+	@Select("SELECT post_id, title, DATE_FORMAT(created_at, '%Y-%m-%d %H:%i:%s') AS created_at, author_id, author_role, author, view, likes FROM post WHERE board_id = #{boardId};")
 	@Results({ @Result(property = "postId", column = "post_id"), @Result(property = "title", column = "title"),
 			@Result(property = "createdAt", column = "created_at"),
 			@Result(property = "authorRole", column = "author_role"),
@@ -62,7 +62,7 @@ public interface PostMapper {
 			           author_role,
 			           author,
 			           view
-			      FROM Post
+			      FROM post
 			     WHERE author_id = #{userId}
 			""")
 	@Results({ @Result(column = "post_id", property = "postId"), @Result(column = "title", property = "title"),
@@ -73,7 +73,7 @@ public interface PostMapper {
 	List<Post> getUsersAllPosts(@Param("userId") String userId);
 
 // id별 게시글 가져오기    
-	@Select("SELECT post_id, title, DATE_FORMAT(created_at, '%Y-%m-%d %H:%i:%s') AS created_at, author_id, content, author_role, author, view, file_path, likes FROM Post WHERE post_id = #{postId};")
+	@Select("SELECT post_id, title, DATE_FORMAT(created_at, '%Y-%m-%d %H:%i:%s') AS created_at, author_id, content, author_role, author, view, file_path, likes FROM post WHERE post_id = #{postId};")
 	@Results({ @Result(property = "postId", column = "post_id"), @Result(property = "title", column = "title"),
 			@Result(property = "createdAt", column = "created_at"),
 			@Result(property = "authorRole", column = "author_role"),
@@ -82,7 +82,7 @@ public interface PostMapper {
 	Post getPostById(int postId);
 
 	// title로 게시글 검색
-	@Select("SELECT * FROM Post WHERE title LIKE CONCAT('%', #{title}, '%')")
+	@Select("SELECT * FROM post WHERE title LIKE CONCAT('%', #{title}, '%')")
 	List<Post> searchPostsByTitle(String title);
 
 	// 게시글의 총 좋아요 수 가져오기

@@ -30,7 +30,7 @@ public interface ExamMapper {
     //특정 클래스의 시험 목록 가져오기
     @Select("""
     	    SELECT e.*, es.score
-    	    FROM Exam e
+    	    FROM exam e
     	    LEFT JOIN Exam_Submission es 
     	      ON e.exam_id = es.exam_id AND es.student_id = #{studentId}
     	    WHERE e.class_id = #{classId}
@@ -51,7 +51,7 @@ public interface ExamMapper {
     	List<Exam> findByClassIdAndStudentId(@Param("classId") int classId, @Param("studentId") String studentId);
 
     //특정 시험 상세 보기
-    @Select("SELECT * FROM Exam WHERE exam_id = #{examId}")
+    @Select("SELECT * FROM exam WHERE exam_id = #{examId}")
     @Results({
         @Result(property = "examId", column = "exam_id"),
         @Result(property = "classId", column = "class_id"),
@@ -68,7 +68,7 @@ public interface ExamMapper {
     
     
     //시험 삭제
-    @Delete("DELETE FROM Exam WHERE exam_id = #{examId}")
+    @Delete("DELETE FROM exam WHERE exam_id = #{examId}")
     void deleteExam(@Param("examId") int examId);
 
     
@@ -78,7 +78,7 @@ public interface ExamMapper {
 
     
     //  전체 시험 목록 가져오기
-    @Select("SELECT * FROM Exam")
+    @Select("SELECT * FROM exam")
     List<Exam> findAll();
     
     
@@ -98,7 +98,7 @@ public interface ExamMapper {
     void createExamBoard(@Param("classId") int classId);
 
     // Exam_Board 조회
-    @Select("SELECT * FROM Exam_Board WHERE class_id = #{classId}")
+    @Select("SELECT * FROM exam_board WHERE class_id = #{classId}")
     @Results({
         @Result(property = "boardId", column = "board_id"),
         @Result(property = "classId", column = "class_id"),
