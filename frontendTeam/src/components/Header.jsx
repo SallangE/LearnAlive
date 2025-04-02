@@ -91,7 +91,7 @@ const Header = () => {
       </span>
       <button className="logout-btn" onClick={handleLogout}>로그아웃</button>
       <button className="mypage-btn" onClick={() => navigate("/mypage")}>마이페이지</button>
-      <button onClick={() => window.location.href = "/calendar"}>📅</button>
+      <button onClick={() => navigate("/calendar")}>📅</button>
 
       {/* 쪽지 버튼 */}
           <button
