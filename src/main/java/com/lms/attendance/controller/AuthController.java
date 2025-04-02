@@ -56,58 +56,72 @@ public class AuthController {
         return ResponseEntity.ok(Map.of("available", available));
     }
 
-@PostMapping("/login")
-public ResponseEntity<?> login(@RequestBody LoginRequest request) {
-    if ("admin".equalsIgnoreCase(request.getUserId())) {
-        String adminPassword = authService.getAdminPasswordById(request.getUserId());
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody LoginRequest request) {
+        System.out.println("🔐 [로그인 요청] ID: " + request.getUserId());
 
-        if (adminPassword == null || !authService.isPasswordValid(request.getPassword(), adminPassword)) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
-                    .body(Map.of("success", false, "message", "잘못된 관리자 비밀번호입니다."));
+        try {
+            if ("admin".equalsIgnoreCase(request.getUserId())) {
+                System.out.println("📛 [관리자 로그인 시도]");
+
+                String adminPassword = authService.getAdminPasswordById(request.getUserId());
+                if (adminPassword == null || !authService.isPasswordValid(request.getPassword(), adminPassword)) {
+                    System.out.println("❌ [실패] 관리자 비밀번호 불일치 또는 null");
+                    return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                            .body(Map.of("success", false, "message", "잘못된 관리자 비밀번호입니다."));
+                }
+
+                String role = "admin";
+                String roleInKorean = "관리자";
+
+                String token = jwtUtil.generateToken(request.getUserId(), role);
+                System.out.println("✅ [성공] 관리자 로그인 완료");
+
+                return ResponseEntity.ok(Map.of(
+                        "success", true,
+                        "message", "로그인 성공",
+                        "role", role,
+                        "username", roleInKorean,
+                        "userId", request.getUserId(),
+                        "token", token
+                ));
+            }
+
+            System.out.println("👤 [일반 사용자 로그인 시도] ID: " + request.getUserId());
+
+            String role = authService.authenticate(request.getUserId(), request.getPassword());
+            if (role == null) {
+                System.out.println("❌ [실패] 일반 사용자 인증 실패");
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                        .body(Map.of("success", false, "message", "잘못된 ID 또는 비밀번호입니다."));
+            }
+
+            String name = "admin".equalsIgnoreCase(role) ? null : authService.getUserNameByIdAndRole(request.getUserId(), role);
+
+            String roleInKorean = switch (role.toLowerCase()) {
+                case "admin" -> "관리자";
+                case "professor" -> "교수자";
+                case "student" -> "학생";
+                default -> "알 수 없음";
+            };
+
+            String token = jwtUtil.generateToken(request.getUserId(), role);
+            System.out.println("✅ [성공] 사용자 로그인 완료 - 이름: " + name + ", 역할: " + role);
+
+            return ResponseEntity.ok(Map.of(
+                    "success", true,
+                    "message", "로그인 성공",
+                    "role", role,
+                    "username", name,
+                    "userId", request.getUserId(),
+                    "token", token
+            ));
+        } catch (Exception e) {
+            System.out.println("❌ [예외 발생] 로그인 처리 중 에러: " + e.getMessage());
+            e.printStackTrace();
+            return ResponseEntity.status(500)
+                    .body(Map.of("success", false, "message", "서버 오류로 로그인에 실패했습니다."));
         }
-
-        String role = "admin";
-        String roleInKorean = "관리자";
-
-        // ✅ 관리자도 토큰 발급!
-        String token = jwtUtil.generateToken(request.getUserId(), role);
-
-        return ResponseEntity.ok(Map.of(
-                "success", true,
-                "message", "로그인 성공",
-                "role", role,
-                "username", roleInKorean,
-                "userId", request.getUserId(),
-                "token", token  // ✅ 토큰 포함
-        ));
     }
 
-    String role = authService.authenticate(request.getUserId(), request.getPassword());
-
-    if (role == null) {
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
-                .body(Map.of("success", false, "message", "잘못된 ID 또는 비밀번호입니다."));
-    }
-
-    String name = "admin".equalsIgnoreCase(role) ? null : authService.getUserNameByIdAndRole(request.getUserId(), role);
-
-    String roleInKorean = switch (role.toLowerCase()) {
-        case "admin" -> "관리자";
-        case "professor" -> "교수자";
-        case "student" -> "학생";
-        default -> "알 수 없음";
-    };
-
-    // ✅ 여기서 토큰 발급
-    String token = jwtUtil.generateToken(request.getUserId(), role);
-
-    return ResponseEntity.ok(Map.of(
-            "success", true,
-            "message", "로그인 성공",
-            "role", role,
-            "username", name,
-            "userId", request.getUserId(),
-            "token", token  // ✅ 프론트에서 저장할 토큰
-    ));
-}
 }
