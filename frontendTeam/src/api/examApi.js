@@ -81,15 +81,15 @@ export const ExamResultsByExamId = async (examId) => {
 
 
 export const fetchExamBoards = (classId) => {
-  return axios.get(`/api/exams/board?classId=${classId}`).then(res => res.data);
+  return axios.get(`${API_URL}/board?classId=${classId}`).then(res => res.data);
 };
 
 export const createQuizBoard = (classId) => {
-  return axios.post(`/api/exams/board?classId=${classId}`);
+  return axios.post(`${API_URL}/board?classId=${classId}`);
 };
 
 export const deleteExamBoard = (boardId) => {
-  return axios.delete(`/api/exams/board/${boardId}`);
+  return axios.delete(`${API_URL}/board/${boardId}`);
 };
 
 // ✅ 학번(studentId) 없이 classId만으로 모든 시험 조회
