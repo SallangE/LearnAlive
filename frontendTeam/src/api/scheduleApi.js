@@ -3,12 +3,12 @@ import axios from "axios";
 // 세션에서 userId 가져오기
 const user = JSON.parse(sessionStorage.getItem('user'));  // JSON 파싱
 const userId = user ? user.userId : null;  // user가 없을 경우 대비
-const API_BASE_URL = `http://localhost:8080/api/schedules/${userId}`;
+const API_BASE_URL = `https://learn-alive-5d351ee528be.herokuapp.com/api/schedules/${userId}`;
 
 
 // 일정 목록 가져오기
 export const getAllSchedule = async () => {
-    const response = await axios.get(`http://localhost:8080/api/schedules/${userId}/`);
+    const response = await axios.get(`https://learn-alive-5d351ee528be.herokuapp.com/api/schedules/${userId}/`);
     console.log( "일정 가져오기 실행", response.data);
     return response.data;
   };
@@ -68,13 +68,13 @@ export const createSchedule = async (schedule) => {
 
   //학생의 설문조사 가져오기
   export const getSurveyTitles = async (userId) => {
-    const response = await axios.get(`http://localhost:8080/api/schedules/${userId}/calendar`);
+    const response = await axios.get(`https://learn-alive-5d351ee528be.herokuapp.com/api/schedules/${userId}/calendar`);
     return response.data;
   };
 
 //헤더에서 띄울 알람 가져오기
   export const fetchAlarmList = async (userId) => {
-    const response = await axios.get(`http://localhost:8080/api/alarms/${userId}`);
+    const response = await axios.get(`https://learn-alive-5d351ee528be.herokuapp.com/api/alarms/${userId}`);
     return response.data;
   };
 
@@ -85,7 +85,7 @@ export const createSchedule = async (schedule) => {
 
   // 🔄 알림 읽음 처리
 export const markAllAlarmsAsRead = async (userId) => {
-  const res = await fetch(`http://localhost:8080/api/alarms/read/${userId}`, {
+  const res = await fetch(`https://learn-alive-5d351ee528be.herokuapp.com/api/alarms/read/${userId}`, {
     method: "PUT",
   });
   if (!res.ok) throw new Error("알림 읽음 처리 실패");

@@ -16,7 +16,7 @@ export const AuthProvider = ({ children }) => {
   const login = async (userId, password) => {
     try {
       console.log(":압정: 로그인 요청:", { userId, password });
-      const response = await axios.post("http://localhost:8080/api/auth/login", {
+      const response = await axios.post("https://learn-alive-5d351ee528be.herokuapp.com/api/auth/login", {
         userId,
         password,
       });

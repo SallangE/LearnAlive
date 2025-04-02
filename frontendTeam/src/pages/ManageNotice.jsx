@@ -12,7 +12,7 @@ const ManageNotice = () => {
   // 공지사항 목록 가져오기
   useEffect(() => {
     axios
-      .get("http://localhost:8080/api/notice") // GET 요청
+      .get("https://learn-alive-5d351ee528be.herokuapp.com/api/notice") // GET 요청
       .then((response) => {
         setNotices(response.data); // 응답 데이터 저장
       })
@@ -24,7 +24,7 @@ const ManageNotice = () => {
   // 공지사항 추가
   const handleAdd = () => {
     axios
-      .post("http://localhost:8080/api/notice", { title, content }) // POST 요청
+      .post("https://learn-alive-5d351ee528be.herokuapp.com/api/notice", { title, content }) // POST 요청
       .then(() => {
         setTitle("");
         setContent("");
@@ -39,7 +39,7 @@ const ManageNotice = () => {
   const handleEdit = () => {
     if (selectedNoticeId) {
       axios
-        .put(`http://localhost:8080/api/notice/${selectedNoticeId}`, { title, content }) // PUT 요청
+        .put(`https://learn-alive-5d351ee528be.herokuapp.com/api/notice/${selectedNoticeId}`, { title, content }) // PUT 요청
         .then(() => {
           setTitle("");
           setContent("");
@@ -55,7 +55,7 @@ const ManageNotice = () => {
   // 공지사항 삭제
   const handleDelete = (notice_id) => {
     axios
-      .delete(`http://localhost:8080/api/notice/${notice_id}`) // DELETE 요청
+      .delete(`https://learn-alive-5d351ee528be.herokuapp.com/api/notice/${notice_id}`) // DELETE 요청
       .then(() => {
         window.location.reload();
       })

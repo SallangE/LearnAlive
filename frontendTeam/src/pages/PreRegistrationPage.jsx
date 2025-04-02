@@ -48,7 +48,7 @@ function PreRegistrationPage() {
 
   //웹소켓
   useEffect(() => {
-    const socket = new SockJS('http://localhost:8080/ws');
+    const socket = new SockJS('https://learn-alive-5d351ee528be.herokuapp.com/ws');
     const stompClient = new Client({
       webSocketFactory: () => socket,
       reconnectDelay: 5000,

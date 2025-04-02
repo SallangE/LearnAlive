@@ -14,7 +14,7 @@ const NoticeDetail = () => {
       setError(null);
 
       axios
-        .get(`http://localhost:8080/api/notice/${notice_id}`)
+        .get(`https://learn-alive-5d351ee528be.herokuapp.com/api/notice/${notice_id}`)
         .then((response) => {
           setNotice(response.data);
           setLoading(false);

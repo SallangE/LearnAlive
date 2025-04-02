@@ -1,7 +1,7 @@
 import axios from "axios";
 
 // API 기본 URL
-const API_BASE_URL = "http://localhost:8080/api/posts";
+const API_BASE_URL = "https://learn-alive-5d351ee528be.herokuapp.com/api/posts";
 
 
 // 게시글 목록 가져오기

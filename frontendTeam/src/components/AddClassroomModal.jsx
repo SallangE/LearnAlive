@@ -22,7 +22,7 @@ const AddClassroomModal = ({ onClose, onAddClassroom }) => {
   useEffect(() => {
     const token = localStorage.getItem("token");
     console.log(":포장: 현재 토큰:", token); // :왼쪽을_가리키는_손_모양: 콘솔에서 확인용
-    axios.get("http://localhost:8080/api/professors", {
+    axios.get("https://learn-alive-5d351ee528be.herokuapp.com/api/professors", {
       headers: {
         Authorization: `Bearer ${token}`,
       },

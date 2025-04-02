@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:8080/api/messages';
+const API_URL = 'https://learn-alive-5d351ee528be.herokuapp.com/api/messages';
 
 // 쪽지 보내기
 export const sendMessage = async (messageData) => {

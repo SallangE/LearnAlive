@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "http://localhost:8080/api/professors";
+const BASE_URL = "https://learn-alive-5d351ee528be.herokuapp.com/api/professors";
 
 // 아이디 찾기 API
 export const findProfessorId = async (name, email) => {

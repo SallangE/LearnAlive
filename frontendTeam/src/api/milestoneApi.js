@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_BASE_URL = "http://localhost:8080/api";
+const API_BASE_URL = "https://learn-alive-5d351ee528be.herokuapp.com/api";
 
 // 기존 함수들...
 export const createClassMilestones = async (classId, milestones) => {
