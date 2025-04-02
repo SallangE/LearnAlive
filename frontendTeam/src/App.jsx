@@ -75,7 +75,7 @@ function App() {
 
           <Route path="/classroom/:classId/boards/addpost/:boardId" element={<AddPostPage />} /> {/* 게시글 추가 페이지 */}
 
-          <Route path="/Calendar" element={<CalendarPage />} />
+          <Route path="/calendar" element={<CalendarPage />} />
 
           <Route path="/classroom/:classId/exam" element={<ExamList />} />
           <Route
