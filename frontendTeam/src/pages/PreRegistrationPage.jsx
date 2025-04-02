@@ -53,7 +53,6 @@ function PreRegistrationPage() {
       webSocketFactory: () => socket,
       reconnectDelay: 5000,
       onConnect: () => {
-        console.log("✅ WebSocket 연결됨");
   
         stompClient.subscribe('/topic/registrationCounts', (message) => {
           const counts = JSON.parse(message.body);

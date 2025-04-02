@@ -182,7 +182,7 @@ const Header = () => {
         </div>
       )}
 
-      <div style={{
+      {/* <div style={{
           backgroundColor: "white",
           padding: "10px",
           borderRadius: "14px",
@@ -192,7 +192,7 @@ const Header = () => {
           border: "4px solid #1929A4"
         }}>
           ⏰ {currentTime.toLocaleTimeString('ko-KR')}
-        </div>
+        </div> */}
 
       {/* 모달 */}
       {isModalOpen && <FindAccountModal onClose={() => setIsModalOpen(false)} />}
