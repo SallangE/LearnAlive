@@ -1,0 +1,65 @@
+.attendance-container {
+    max-width: 600px;
+    margin: 60px auto;
+    padding: 30px;
+    border: 1px solid #ddd;
+    border-radius: 16px;
+    background-color: #fafafa;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    font-family: 'Segoe UI', sans-serif;
+  }
+  
+  .attendance-title {
+    font-size: 1.8rem;
+    margin-bottom: 30px;
+    color: #333;
+  }
+  
+  
+  .button-checkin {
+    padding: 12px 24px;
+    background-color: #00C0AE !important;
+    color: white !important;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .button-checkin:hover {
+    background-color: #008578 !important;
+  }
+  
+  .attendance-message-box {
+    margin: 20px auto;
+    padding: 15px;
+    border-radius: 10px;
+    background-color: #eef6ff;
+    border-left: 5px solid #2138DE;
+    display: inline-block;
+    max-width: 90%;
+  }
+  
+  .attendance-message {
+    font-size: 1rem;
+    color: #333;
+  }
+  
+  .button-cancel {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 10px 20px;
+    background-color: #aaa;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+  
+  .button-cancel:hover {
+    background-color: #888;
+  }
+  

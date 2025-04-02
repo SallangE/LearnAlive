@@ -1,0 +1,10 @@
+.Toastify__toast-body {
+    white-space: pre-line;
+  }
+
+  #chatbot-wrapper {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 9999; /* 항상 최상단에 보이도록 */
+  }

@@ -1,0 +1,207 @@
+/* 간단한 예시 스타일입니다. 필요에 맞게 조정하세요 */
+.pre-reg-container {
+    display: flex;
+    font-family: sans-serif;
+  }
+  
+  /* 좌측 사이드바 */
+  .sidebar {
+    width: 220px;
+    background-color: #f2f2f2;
+    padding: 1rem;
+    box-sizing: border-box;
+    position: sticky;
+    margin-top: 53px;
+  }
+  
+  .sidebar h2 {
+    margin-top: 0;
+  }
+  
+  .sidebar-info p {
+    margin: 0.25rem 0;
+  }
+  
+  /* 우측 메인 */
+  .main-content {
+    flex: 1;
+    padding: 1rem;
+    box-sizing: border-box;
+    margin-top: 20px;
+  }
+  
+  .search-bar {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .course-list, .my-courses, .time-table {
+    margin-bottom: 1.5rem;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 0.5rem;
+  }
+  
+  table, th, td {
+    border: 1px solid #ccc;
+    text-align: center;
+    padding: 0.5rem;
+  }
+  
+  /* ----------------------------------
+   타임테이블 공통 래퍼
+---------------------------------- */
+.timetable {
+  position: relative;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  overflow: hidden;
+}
+
+/* 헤더: 요일 라벨 */
+.timetable-header {
+  display: grid;
+  grid-template-columns: 60px repeat(5, 1fr);
+  background-color: #f1f1f1;
+  border-bottom: 1px solid #ccc;
+}
+
+.time-label-header {
+  background-color: #f1f1f1;
+}
+
+.day-header {
+  text-align: center;
+  font-weight: bold;
+  padding: 0.75rem 0;
+  border-left: 1px solid #ddd;
+}
+
+/* 본체 영역 */
+.timetable-body {
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  height: 600px;
+}
+
+/* 시간 라벨도 동일하게 */
+.time-labels {
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* 부모와 동일하게 맞춤 */
+  border-right: 1px solid #ddd;
+  margin-right: 4px;
+}
+
+.time-slot-label {
+  height: 46.15px;
+  padding-right: 0.5rem;
+  box-sizing: border-box;
+  border-bottom: 1px dashed #e2e2e2;
+  font-size: 0.85rem;
+  color: #777;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+}
+
+/* 요일별 강의 칸들 */
+.timetable-columns {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  position: relative;
+  height: 100%; /* 부모와 동일하게 맞춤 */
+}
+
+.background-grid {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  z-index: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.grid-row-line {
+  flex: 1;
+  border-bottom: 1px solid #ddd;
+}
+
+.timetable-column {
+  position: relative;
+  border-left: 1px solid #eee;
+  height: 100%; /* 부모와 동일하게 맞춤 */
+}
+
+/* ===== 강의 블록 ===== */
+.course-block {
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  top: 0;
+  width: auto;
+  font-size: 0.9rem;
+  color: white;
+  background-color: #999;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  overflow: hidden;
+  text-align: center;
+  font-weight: 500;
+  line-height: 1.2;
+  opacity: 0.95;
+  border: none;
+}
+
+.modal-body {
+  max-height: calc(100vh - 150px); /* 또는 적절한 값 */
+  overflow-y: auto;
+}
+
+.course-name {
+  padding-top: 15px;
+  font-size: 17px;
+}
+
+.search-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.search-bar {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.timetable-button button {
+  white-space: nowrap;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+  gap: 1rem;
+}
+
+.pagination button {
+  padding: 6px 12px;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 4px;
+}
+
+.pagination button:disabled {
+  color: #aaa;
+  cursor: not-allowed;
+  border-color: #eee;
+}
