@@ -81,7 +81,7 @@ export const ExamResultsByExamId = async (examId) => {
 
 
 export const fetchExamBoards = (classId) => {
-  return axios.get(`${API_URL}/board?classId=${classId}`).then(res => res.data);
+  return axios.post(`${API_URL}/board?classId=${classId}`).then(res => res.data);
 };
 
 export const createQuizBoard = (classId) => {
