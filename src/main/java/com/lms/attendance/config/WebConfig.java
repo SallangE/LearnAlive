@@ -8,12 +8,12 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
-        // React 라우팅을 index.html로 전달
-        registry.addViewController("/{spring:\\w+}")
+        // 정적 파일은 index.html로 리다이렉트하지 않도록 예외 처리
+        registry.addViewController("/{spring:(?!static|assets).*}")
                 .setViewName("forward:/index.html");
-        registry.addViewController("/**/{spring:\\w+}")
+        registry.addViewController("/**/{spring:(?!static|assets).*}")
                 .setViewName("forward:/index.html");
-        registry.addViewController("/{spring:\\w+}/**{spring:?!(\\.js|\\.css)$}")
+        registry.addViewController("/{spring:(?!static|assets).*}/**{spring:?!(\\.js|\\.css)$}")
                 .setViewName("forward:/index.html");
     }
 }
