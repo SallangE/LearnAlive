@@ -43,7 +43,7 @@ const ScheduleModal = ({ isModalOpen, selectedDate, formData, onChange, onSubmit
                 <input
                   type="color"
                   name="color"
-                  value={formData.color}  // formData에서 color 값을 가져와서 설정
+                  value={formData.color}  // formData에서 czgolor 값을 가져와서 설정
                   onChange={onChange}  // 색상 변경 시 formData.color 값 업데이트
                 />
               </label>

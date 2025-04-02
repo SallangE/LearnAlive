@@ -20,7 +20,7 @@ const AdminUniversityDepartmentManagement = () => {
   // 대학, 학과 목록 조회 함수
   const fetchUniversities = async () => {
     try {
-      const response = await axios.get('http://localhost:8080/api/admin/universities');
+      const response = await axios.get('https://learn-alive-5d351ee528be.herokuapp.com/api/admin/universities');
       setUniversities(response.data);
     } catch (error) {
       console.error("대학 목록 조회 실패", error.response?.data || error.message);
@@ -29,7 +29,7 @@ const AdminUniversityDepartmentManagement = () => {
 
   const fetchDepartments = async () => {
     try {
-      const response = await axios.get('http://localhost:8080/api/admin/departments');
+      const response = await axios.get('https://learn-alive-5d351ee528be.herokuapp.com/api/admin/departments');
       console.log("departments from server:", response.data);
       setDepartments(response.data);
     } catch (error) {
@@ -51,7 +51,7 @@ const AdminUniversityDepartmentManagement = () => {
       return;
     }
     try {
-      const response = await axios.post('http://localhost:8080/api/admin/university', { universityName: trimmedName });
+      const response = await axios.post('https://learn-alive-5d351ee528be.herokuapp.com/api/admin/university', { universityName: trimmedName });
       setUniversityMessage(response.data.message);
       setNewUniversity('');
       fetchUniversities();
@@ -68,7 +68,7 @@ const AdminUniversityDepartmentManagement = () => {
       return;
     }
     try {
-      const response = await axios.put('http://localhost:8080/api/admin/university', { universityId: univ.universityId, universityName: editUniversityName.trim() });
+      const response = await axios.put('https://learn-alive-5d351ee528be.herokuapp.com/api/admin/university', { universityId: univ.universityId, universityName: editUniversityName.trim() });
       setUniversityMessage(response.data.message);
       setEditingUniversity(null);
       setEditUniversityName('');
@@ -82,7 +82,7 @@ const AdminUniversityDepartmentManagement = () => {
   // 대학 삭제
   const handleDeleteUniversity = async (universityId) => {
     try {
-      const response = await axios.delete(`http://localhost:8080/api/admin/university/${universityId}`);
+      const response = await axios.delete(`https://learn-alive-5d351ee528be.herokuapp.com/api/admin/university/${universityId}`);
       setUniversityMessage(response.data.message);
       fetchUniversities();
     } catch (error) {
@@ -104,7 +104,7 @@ const AdminUniversityDepartmentManagement = () => {
       return;
     }
     try {
-      const response = await axios.post('http://localhost:8080/api/admin/department', { departmentName: trimmedDeptName, universityId: selectedUniversityId });
+      const response = await axios.post('https://learn-alive-5d351ee528be.herokuapp.com/api/admin/department', { departmentName: trimmedDeptName, universityId: selectedUniversityId });
       setDepartmentMessage(response.data.message);
       setDepartmentName('');
       fetchDepartments();
@@ -121,7 +121,7 @@ const AdminUniversityDepartmentManagement = () => {
       return;
     }
     try {
-      const response = await axios.put('http://localhost:8080/api/admin/department', { departmentId: dept.departmentId, departmentName: editDepartmentName.trim(), universityId: dept.universityId });
+      const response = await axios.put('https://learn-alive-5d351ee528be.herokuapp.com/api/admin/department', { departmentId: dept.departmentId, departmentName: editDepartmentName.trim(), universityId: dept.universityId });
       setDepartmentMessage(response.data.message);
       setEditingDepartment(null);
       setEditDepartmentName('');
@@ -135,7 +135,7 @@ const AdminUniversityDepartmentManagement = () => {
   // 학과 삭제
   const handleDeleteDepartment = async (departmentId) => {
     try {
-      const response = await axios.delete(`http://localhost:8080/api/admin/department/${departmentId}`);
+      const response = await axios.delete(`https://learn-alive-5d351ee528be.herokuapp.com/api/admin/department/${departmentId}`);
       setDepartmentMessage(response.data.message);
       fetchDepartments();
     } catch (error) {
