@@ -21,16 +21,16 @@ export const AuthProvider = ({ children }) => {
       });
       const userData = response.data;
       // :흰색_확인_표시: 응답 확인
-      console.log("토큰 확인", userData.token);
+
       // :흰색_확인_표시: 토큰 로컬스토리지에 저장
       if (userData.token) {
         localStorage.setItem("token", userData.token);
-        console.log(":흰색_확인_표시: 토큰 저장 완료!");
+
       }
       // :흰색_확인_표시: 사용자 정보 세션스토리지에 저장
       setUser(userData);
       sessionStorage.setItem("user", JSON.stringify(userData));
-      console.log(":흰색_확인_표시: 로그인 성공!");
+
     } catch (error) {
       console.error(":압정: 로그인 실패:", error.response?.data || error.message);
       alert(error.response?.data?.message || "로그인 실패. 아이디와 비밀번호를 확인하세요.");

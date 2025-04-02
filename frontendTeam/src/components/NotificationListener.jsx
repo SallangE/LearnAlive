@@ -7,7 +7,6 @@ import { fetchAlarmList } from "../api/scheduleApi";
 
 const NotificationListener = ({ userId, updateAlarms }) => {
   const { addNotification } = useNotifications();
-  console.log("🧪 NotificationListener 시작됨, userId:", userId);
 
   useEffect(() => {
     if (!userId) {
