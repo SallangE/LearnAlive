@@ -27,9 +27,6 @@ const NotificationListener = ({ userId, updateAlarms }) => {
     });
 
     stompClient.onConnect = () => {
-      console.log("✅ WebSocket 연결 성공");
-      const topic = `/topic/user/${userId}`;
-      console.log("📡 구독 주소:", topic);
 
       // ✅ [게시글/공지/시험 등] 클래스 관련 실시간 알림
       stompClient.subscribe(`/topic/user/${userId}`, (message) => {

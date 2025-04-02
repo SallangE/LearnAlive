@@ -15,15 +15,13 @@ export const AuthProvider = ({ children }) => {
   // :흰색_확인_표시: 로그인 함수
   const login = async (userId, password) => {
     try {
-      console.log(":압정: 로그인 요청:", { userId, password });
       const response = await axios.post("https://learn-alive-5d351ee528be.herokuapp.com/api/auth/login", {
         userId,
         password,
       });
       const userData = response.data;
       // :흰색_확인_표시: 응답 확인
-      console.log(":포장: userData:", userData);
-      console.log(":포장: token:", userData.token);
+      console.log("토큰 확인", userData.token);
       // :흰색_확인_표시: 토큰 로컬스토리지에 저장
       if (userData.token) {
         localStorage.setItem("token", userData.token);
