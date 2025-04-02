@@ -85,7 +85,9 @@ export const fetchExamBoards = (classId) => {
 };
 
 export const createQuizBoard = (classId) => {
-  return axios.post(`${API_URL}/board?classId=${classId}`);
+  return axios.post(`${API_URL}/board`, {}, {
+    params: { classId },
+  });
 };
 
 export const deleteExamBoard = (boardId) => {
