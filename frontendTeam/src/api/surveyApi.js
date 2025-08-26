@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:8080/api/surveys";
+const API_URL = "https://learn-alive-5d351ee528be.herokuapp.com/api/surveys";
 
 /** ✅ 특정 강의실의 설문조사 게시판 목록 조회 */
 export const fetchSurveyBoards = async (classId) => {

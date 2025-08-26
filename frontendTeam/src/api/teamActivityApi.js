@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_BASE_URL = "http://localhost:8080/api/team-activities";
+const API_BASE_URL = "https://learn-alive-5d351ee528be.herokuapp.com/api/team-activities";
 
 // 팀 활동 게시글 생성
 export const createTeamActivityPost = async (postData) => {

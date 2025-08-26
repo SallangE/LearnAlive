@@ -1,5 +1,5 @@
 import axios from "../api/axiosInstance"; // :흰색_확인_표시: 토큰 자동 부착된 인스턴스
-const API_URL = "http://localhost:8080/api/students";
+const API_URL = "https://learn-alive-5d351ee528be.herokuapp.com/api/students";
 
 export const registerStudent = async (studentData) => {
   const response = await axios.post(`${API_URL}/register`, studentData);

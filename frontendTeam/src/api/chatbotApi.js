@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:8080/api/chatbot';
+const API_URL = 'https://learn-alive-5d351ee528be.herokuapp.com/api/chatbot';
 
 // ✅ 모든 챗봇 질문/답변 가져오기
 export const fetchAllChatBots = async () => {

@@ -3,7 +3,7 @@ import axios from "axios";
 // 세션에서 userId 가져오기
 const user = JSON.parse(sessionStorage.getItem('user'));  // JSON 파싱
 const userId = user ? user.userId : null;  // user가 없을 경우 대비
-const API_BASE_URL = `http://localhost:8080/api/schedules/${userId}`;
+const API_BASE_URL = `https://learn-alive-5d351ee528be.herokuapp.com/api/schedules/${userId}`;
 
 
 // 일정 목록 가져오기

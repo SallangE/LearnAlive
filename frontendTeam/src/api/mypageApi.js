@@ -1,7 +1,7 @@
 import axios from "axios";
 
 // API 기본 URL
-const API_BASE_URL = "http://localhost:8080/api/mypage";
+const API_BASE_URL = "https://learn-alive-5d351ee528be.herokuapp.com/api/mypage";
 
 export const getUserById = async (userId, role) => {
   const response = await axios.get(`${API_BASE_URL}/user/${userId}/${role}`);

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:8080/api/exams';
+const API_URL = 'https://learn-alive-5d351ee528be.herokuapp.com/api/exams';
 
 // ✅ 새로운 시험 추가
 export const createExam = async (examData) => {

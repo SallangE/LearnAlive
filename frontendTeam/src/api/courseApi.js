@@ -1,5 +1,5 @@
 import axios from "axios";
-const API_BASE_URL = "http://localhost:8080/api/course";
+const API_BASE_URL = "https://learn-alive-5d351ee528be.herokuapp.com/api/course";
 
 // ✅ 예비 수강신청 가능한 강의 목록 가져오기
 export const fetchPreRegistrationCourses = async () => {

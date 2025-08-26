@@ -14,7 +14,7 @@ public class CorsConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/api/**") // API 경로에 대해 CORS 허용
-                        .allowedOrigins("https://korea-attendance-96b0a03da0c9.herokuapp.com", "http://localhost:5173" ) // 배포된 도메인 허용
+                        .allowedOrigins("https://learn-alive-5d351ee528be.herokuapp.com", "http://localhost:5173" ) // 배포된 도메인 허용
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                         .allowCredentials(true);
             }

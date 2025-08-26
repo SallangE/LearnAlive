@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:8080/api/attendance";
+const API_URL = "https://learn-alive-5d351ee528be.herokuapp.com/api/attendance";
 
 export const fetchAttendanceByDate = async (classId, date) => {
   // ✅ 한국 시간대(KST)로 변환

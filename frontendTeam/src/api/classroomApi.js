@@ -1,5 +1,5 @@
 import axios from "axios";
-const API_BASE_URL = "http://localhost:8080/api/classes";
+const API_BASE_URL = "https://learn-alive-5d351ee528be.herokuapp.com/api/classes";
 
 export const fetchClassrooms = async (userId) => {
   const response = await axios.get(`${API_BASE_URL}/user/${userId}`);
