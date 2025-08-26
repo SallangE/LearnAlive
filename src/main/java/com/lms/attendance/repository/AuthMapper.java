@@ -17,7 +17,7 @@ public interface AuthMapper {
     @Select("""
         SELECT student_id AS userId, name, 'student' AS role, password FROM Student WHERE student_id = #{userId}
         UNION ALL
-        SELECT prof_id AS userId, name, 'professor' AS role, password FROM Professor WHERE prof_id = #{userId}
+        SELECT prof_id AS userId, name, 'professor' AS role, password FROM professor WHERE prof_id = #{userId}
         UNION ALL
         SELECT admin_id AS userId, NULL AS name, 'admin' AS role, password FROM Admin WHERE admin_id = #{userId}
     """)
@@ -33,7 +33,7 @@ public interface AuthMapper {
     @Select("""
     	    SELECT name FROM Student WHERE student_id = #{userId}
     	    UNION
-    	    SELECT name FROM Professor WHERE prof_id = #{userId}
+    	    SELECT name FROM professor WHERE prof_id = #{userId}
     	""")
     	String findUserNameByIdAndRole(@Param("userId") String userId, @Param("role") String role);
 
