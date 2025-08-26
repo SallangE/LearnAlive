@@ -72,14 +72,30 @@ public interface PostMapper {
 			@Result(column = "view", property = "view") })
 	List<Post> getUsersAllPosts(@Param("userId") String userId);
 
-// id별 게시글 가져오기    
-	@Select("SELECT post_id, title, DATE_FORMAT(created_at, '%Y-%m-%d %H:%i:%s') AS created_at, author_id, content, author_role, author, view, file_path, likes "
-			+ " Post WHERE post_id = #{postId};")
-	@Results({ @Result(property = "postId", column = "post_id"), @Result(property = "title", column = "title"),
-			@Result(property = "createdAt", column = "created_at"),
-			@Result(property = "authorRole", column = "author_role"),
-			@Result(property = "authorId", column = "author_id"), @Result(property = "author", column = "author"),
-			@Result(property = "filePath", column = "file_path") })
+	// id별 게시글 가져오기
+	@Select("""
+	  SELECT p.post_id,
+	         p.title,
+	         DATE_FORMAT(p.created_at, '%Y-%m-%d %H:%i:%s') AS created_at,
+	         p.author_id,
+	         p.content,
+	         p.author_role,
+	         p.author,
+	         p.`view` AS view,
+	         p.file_path,
+	         p.likes
+	  FROM Post p
+	  WHERE p.post_id = #{postId}
+	""")
+	@Results({
+	  @Result(property = "postId", column = "post_id"),
+	  @Result(property = "title", column = "title"),
+	  @Result(property = "createdAt", column = "created_at"),
+	  @Result(property = "authorRole", column = "author_role"),
+	  @Result(property = "authorId", column = "author_id"),
+	  @Result(property = "author", column = "author"),
+	  @Result(property = "filePath", column = "file_path")
+	})
 	Post getPostById(int postId);
 
 	// title로 게시글 검색
