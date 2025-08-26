@@ -31,7 +31,7 @@ public interface ExamMapper {
     @Select("""
     	    SELECT e.*, es.score
     	    FROM Exam e
-    	    LEFT JOIN Exam_Submission es 
+    	    LEFT JOIN Exam_submission es 
     	      ON e.exam_id = es.exam_id AND es.student_id = #{studentId}
     	    WHERE e.class_id = #{classId}
     	""")
@@ -82,23 +82,23 @@ public interface ExamMapper {
     List<Exam> findAll();
     
     
-    @Insert("INSERT INTO Exam_Question (exam_id, question_text, question_type, correct_answer) VALUES (#{examId}, #{questionText}, #{questionType}, #{correctAnswer})")
+    @Insert("INSERT INTO Exam_question (exam_id, question_text, question_type, correct_answer) VALUES (#{examId}, #{questionText}, #{questionType}, #{correctAnswer})")
     void createExamQuestion(ExamQuestion question); // 문제 저장
 
     // examId 기준으로 모든 학생의 시험 결과 조회
     @Select("SELECT es.submission_id AS submissionId, es.exam_id AS examId, es.student_id AS studentId, " +
             "es.submitted_at AS submittedAt, es.score, s.name " +
-            "FROM exam_submission es " +
-            "JOIN student s ON es.student_id = s.student_id " +
+            "FROM Exam_submission es " +
+            "JOIN Student s ON es.student_id = s.student_id " +
             "WHERE es.exam_id = #{examId}")
     List<StudentExamResult> findExamResultsByExamId(@Param("examId") int examId);
     
     // Exam_Board 생성
-    @Insert("INSERT INTO Exam_Board (class_id) VALUES (#{classId})")
+    @Insert("INSERT INTO Exam_board (class_id) VALUES (#{classId})")
     void createExamBoard(@Param("classId") int classId);
 
     // Exam_Board 조회
-    @Select("SELECT * FROM Exam_Board WHERE class_id = #{classId}")
+    @Select("SELECT * FROM Exam_board WHERE class_id = #{classId}")
     @Results({
         @Result(property = "boardId", column = "board_id"),
         @Result(property = "classId", column = "class_id"),
@@ -109,7 +109,7 @@ public interface ExamMapper {
     ExamBoard getExamBoardByClassId(@Param("classId") int classId);
     
  // ✅ classId로 전체 시험 목록 가져오기
-    @Select("SELECT * FROM exam WHERE class_id = #{classId}")
+    @Select("SELECT * FROM Exam WHERE class_id = #{classId}")
     @Results({
         @Result(property = "examId", column = "exam_id"),
         @Result(property = "classId", column = "class_id"),

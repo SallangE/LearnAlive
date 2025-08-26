@@ -9,12 +9,12 @@ import java.util.List;
 public interface ExamAnswerMapper {
 
     // 1. 답안 저장
-    @Insert("INSERT INTO Exam_Answer (submission_id, question_id, answer, is_correct) " +
+    @Insert("INSERT INTO Exam_answer (submission_id, question_id, answer, is_correct) " +
             "VALUES (#{submissionId}, #{questionId}, #{answer}, #{isCorrect})")
     void insertExamAnswer(ExamAnswer answer);
 
     // 2. 답안 목록 조회 (특정 제출에 대한 모든 답안)
-    @Select("SELECT * FROM Exam_Answer WHERE submission_id = #{submissionId}")
+    @Select("SELECT * FROM Exam_answer WHERE submission_id = #{submissionId}")
     @Results({
         @Result(property = "answerId", column = "answer_id"),
         @Result(property = "submissionId", column = "submission_id"),
@@ -25,7 +25,7 @@ public interface ExamAnswerMapper {
     List<ExamAnswer> getExamAnswersBySubmissionId(int submissionId);
 
     // 3. 특정 학생의 답안 조회 (시험 ID와 학생 ID로 답안 조회)
-    @Select("SELECT * FROM Exam_Answer WHERE submission_id IN (SELECT submission_id FROM Exam_Submission " +
+    @Select("SELECT * FROM Exam_answer WHERE submission_id IN (SELECT submission_id FROM Exam_submission " +
             "WHERE exam_id = #{examId} AND student_id = #{studentId})")
     @Results({
         @Result(property = "answerId", column = "answer_id"),
@@ -37,6 +37,6 @@ public interface ExamAnswerMapper {
     List<ExamAnswer> getExamAnswersByStudent(@Param("examId") int examId, @Param("studentId") String studentId);
 
     // 4. 답안 업데이트 (정답 여부 등)
-    @Update("UPDATE Exam_Answer SET is_correct = #{isCorrect} WHERE answer_id = #{answerId}")
+    @Update("UPDATE Exam_answer SET is_correct = #{isCorrect} WHERE answer_id = #{answerId}")
     void updateExamAnswer(ExamAnswer answer);
 }

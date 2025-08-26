@@ -11,19 +11,19 @@ import org.apache.ibatis.annotations.*;
 public interface ExamSubmissionMapper {
 
     // 1. 시험 제출 정보 저장 
-    @Insert("INSERT INTO Exam_Submission (exam_id, student_id, submitted_at) VALUES (#{examId}, #{studentId}, #{submittedAt})")
+    @Insert("INSERT INTO Exam_submission (exam_id, student_id, submitted_at) VALUES (#{examId}, #{studentId}, #{submittedAt})")
     @Options(useGeneratedKeys = true, keyProperty = "submissionId")
     void insertExamSubmission(ExamSubmission submission);
 
     // 2. 학생 답변 저장
-    @Insert("INSERT INTO Exam_Answer (submission_id, question_id, student_id, exam_id, answer, is_correct) VALUES (#{submissionId}, #{questionId}, #{studentId}, #{examId}, #{answer}, #{isCorrect})")
+    @Insert("INSERT INTO Exam_answer (submission_id, question_id, student_id, exam_id, answer, is_correct) VALUES (#{submissionId}, #{questionId}, #{studentId}, #{examId}, #{answer}, #{isCorrect})")
     void insertExamAnswer(ExamAnswer answer);
 
     // 3. 정답 조회
 //    @Select("SELECT correct_answer FROM Exam_Question WHERE question_id = #{questionId}")
 //    int getCorrectAnswer(int questionId);
     
-    @Select("SELECT * FROM Exam_Question WHERE exam_id = #{examId} ORDER BY question_id ASC")
+    @Select("SELECT * FROM Exam_question WHERE exam_id = #{examId} ORDER BY question_id ASC")
     @Results({
         @Result(property = "questionId", column = "question_id"),
         @Result(property = "examId", column = "exam_id"),
@@ -38,7 +38,7 @@ public interface ExamSubmissionMapper {
     List<ExamQuestion> getCorrectAnswer(@Param("examId") int examId);
 
     // 4. 최종 점수 업데이트
-    @Update("UPDATE Exam_Submission SET score = #{score} WHERE submission_id = #{submissionId}")
+    @Update("UPDATE Exam_submission SET score = #{score} WHERE submission_id = #{submissionId}")
     void updateExamScore(ExamSubmission submission);
 
     
@@ -46,7 +46,7 @@ public interface ExamSubmissionMapper {
     
     
     // 5. 학생 시험 제출 내역 조회
-    @Select("SELECT * FROM Exam_Submission WHERE exam_id = #{examId} AND student_id = #{studentId}")
+    @Select("SELECT * FROM Exam_submission WHERE exam_id = #{examId} AND student_id = #{studentId}")
     @Results({
         @Result(property = "submissionId", column = "submission_id"),
         @Result(property = "examId", column = "exam_id"),
@@ -58,7 +58,7 @@ public interface ExamSubmissionMapper {
 
     
  // 학생 답변 조회
-    @Select("SELECT * FROM Exam_Answer WHERE student_id = #{studentId} AND exam_id = #{examId}")
+    @Select("SELECT * FROM Exam_answer WHERE student_id = #{studentId} AND exam_id = #{examId}")
     @Results({
         @Result(property = "answerId", column = "answer_id"),
         @Result(property = "submissionId", column = "submission_id"),

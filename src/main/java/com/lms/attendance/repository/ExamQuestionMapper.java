@@ -10,13 +10,13 @@ import com.lms.attendance.model.ExamQuestion;
 public interface ExamQuestionMapper {
     
     // 시험 문제 등록
-	@Insert("INSERT INTO Exam_Question (exam_id, question_title, question_text, correct_answer,  answer1, answer2, answer3, answer4) " +
+	@Insert("INSERT INTO Exam_question (exam_id, question_title, question_text, correct_answer,  answer1, answer2, answer3, answer4) " +
 	        "VALUES (#{examId}, #{questionTitle}, #{questionText}, #{correctAnswer}, #{answer1}, #{answer2}, #{answer3}, #{answer4})")
     @Options(useGeneratedKeys = true, keyProperty = "questionId")
     void createExamQuestion(ExamQuestion question);
 
     // 특정 시험의 문제 목록 조회
-    @Select("SELECT * FROM Exam_Question WHERE exam_id = #{examId}")
+    @Select("SELECT * FROM Exam_question WHERE exam_id = #{examId}")
     @Results({
         @Result(property = "questionId", column = "question_id"),
         @Result(property = "examId", column = "exam_id"),
@@ -31,6 +31,6 @@ public interface ExamQuestionMapper {
     List<ExamQuestion> getQuestionsByExamId(@Param("examId") int examId);
 
     // 특정 시험의 모든 문제 삭제
-    @Delete("DELETE FROM Exam_Question WHERE exam_id = #{examId}")
+    @Delete("DELETE FROM Exam_question WHERE exam_id = #{examId}")
     void deleteQuestionsByExamId(@Param("examId") int examId);
 }
