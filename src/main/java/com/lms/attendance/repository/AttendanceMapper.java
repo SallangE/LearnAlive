@@ -16,7 +16,7 @@ public interface AttendanceMapper {
 			        WHEN NOW() > end_time THEN 'late'
 			        ELSE 'valid'
 			    END AS check_result
-			    FROM Class
+			    FROM class
 			    WHERE class_id = #{classId}
 			""")
 	String checkAttendanceAvailability(@Param("classId") int classId);
@@ -34,10 +34,10 @@ public interface AttendanceMapper {
 	// ✅ 학생 출석 시도 (Attendance 객체를 받아 처리)
 	@Insert("INSERT INTO Attendance (student_id, class_id, date, state, created_at, updated_at) " +
 	        "VALUES (#{studentId}, #{classId}, #{date}, " +
-	        "CASE WHEN TIME(NOW()) BETWEEN (SELECT present_start FROM Class WHERE class_id = #{classId}) " +
-	        "AND (SELECT present_end FROM Class WHERE class_id = #{classId}) THEN 'present' " +
-	        "WHEN TIME(NOW()) BETWEEN (SELECT present_end FROM Class WHERE class_id = #{classId}) " +
-	        "AND (SELECT late_end FROM Class WHERE class_id = #{classId}) THEN 'late' " +
+	        "CASE WHEN TIME(NOW()) BETWEEN (SELECT present_start FROM class WHERE class_id = #{classId}) " +
+	        "AND (SELECT present_end FROM class WHERE class_id = #{classId}) THEN 'present' " +
+	        "WHEN TIME(NOW()) BETWEEN (SELECT present_end FROM class WHERE class_id = #{classId}) " +
+	        "AND (SELECT late_end FROM class WHERE class_id = #{classId}) THEN 'late' " +
 	        "ELSE 'absent' END, NOW(), NULL)")
 	@Options(useGeneratedKeys = true, keyProperty = "attendanceId")
 	void studentCheckIn(Attendance attendance);
@@ -64,7 +64,7 @@ public interface AttendanceMapper {
 			        ON s.student_id = a.student_id
 			        AND a.class_id = #{classId}
 			        AND a.date = #{date}
-			    LEFT JOIN Class c
+			    LEFT JOIN class c
 			        ON sc.class_id = c.class_id
 			    WHERE sc.class_id = #{classId}
 			""")
@@ -137,7 +137,7 @@ public interface AttendanceMapper {
 		        (SELECT university FROM Student WHERE student_id = a.student_id) AS university,
 		        (SELECT department FROM Student WHERE student_id = a.student_id) AS department,
 		        a.class_id AS classId,
-		        (SELECT class_name FROM Class WHERE class_id = a.class_id) AS className,
+		        (SELECT class_name FROM class WHERE class_id = a.class_id) AS className,
 		        a.state AS state,
 		        a.reason AS reason,
 		        a.date AS date

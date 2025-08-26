@@ -73,7 +73,8 @@ public interface PostMapper {
 	List<Post> getUsersAllPosts(@Param("userId") String userId);
 
 // id별 게시글 가져오기    
-	@Select("SELECT post_id, title, DATE_FORMAT(created_at, '%Y-%m-%d %H:%i:%s') AS created_at, author_id, content, author_role, author, view, file_path, likes FROM Post WHERE post_id = #{postId};")
+	@Select("SELECT post_id, title, DATE_FORMAT(created_at, '%Y-%m-%d %H:%i:%s') AS created_at, author_id, content, author_role, author, view, file_path, likes "
+			+ " Post WHERE post_id = #{postId};")
 	@Results({ @Result(property = "postId", column = "post_id"), @Result(property = "title", column = "title"),
 			@Result(property = "createdAt", column = "created_at"),
 			@Result(property = "authorRole", column = "author_role"),
@@ -86,7 +87,7 @@ public interface PostMapper {
 	List<Post> searchPostsByTitle(String title);
 
 	// 게시글의 총 좋아요 수 가져오기
-	@Select("SELECT likes FROM post WHERE post_id = #{postId}")
+	@Select("SELECT likes FROM Post WHERE post_id = #{postId}")
 	int getTotalLikes(int postId);
 
 	// 좋아요
@@ -109,7 +110,7 @@ public interface PostMapper {
     List<Board> findBoardsByClassId(@Param("classId") int classId);
     
     // ✅ 특정 게시판의 게시글 조회 (월별)
-    @Select("SELECT * FROM post WHERE board_id = #{boardId} AND created_at LIKE #{month}")
+    @Select("SELECT * FROM Post WHERE board_id = #{boardId} AND created_at LIKE #{month}")
     @Results({
         @Result(property = "postId", column = "post_id"),
         @Result(property = "boardId", column = "board_id"),

@@ -13,7 +13,7 @@ import com.lms.attendance.model.MyPage;
 
 @Mapper
 public interface MyProfileMapper {
-	@Select("SELECT *, 'professor' as role FROM Professor WHERE prof_id = #{userId}")
+	@Select("SELECT *, 'professor' as role FROM professor WHERE prof_id = #{userId}")
 	@Results({
 	    @Result(property = "userId", column = "prof_id"),
 	    @Result(property = "role", column = "role"),
@@ -51,6 +51,6 @@ public interface MyProfileMapper {
     int updatePassword(@Param("userId") String userId, @Param("newPassword") String newPassword);
     
     // userId에 해당하는 강의실 목록을 반환하는 SQL 쿼리
-    @Select("SELECT class_name FROM Class WHERE class_id = #{classId}")
+    @Select("SELECT class_name FROM class WHERE class_id = #{classId}")
     List<String> findClassByClassId(@Param("classId") String classId);
 }

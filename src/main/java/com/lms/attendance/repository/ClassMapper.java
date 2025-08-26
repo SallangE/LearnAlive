@@ -45,11 +45,11 @@ public interface ClassMapper {
 	    void insertClassDay(@Param("classId") Integer classId, @Param("dayOfWeek") String dayOfWeek);
 
 	// ✅ 강의실 삭제 SQL
-	@Delete("DELETE FROM Class WHERE class_id = #{classId}")
+	@Delete("DELETE FROM class WHERE class_id = #{classId}")
 	void deleteClassById(int classId);
 
 	// 모든 강의실 가져오기
-	@Select("SELECT class_id, class_name, prof_id FROM Class")
+	@Select("SELECT class_id, class_name, prof_id FROM class")
 	@Results({ @Result(column = "class_id", property = "classId"),
 			@Result(column = "class_name", property = "className"), @Result(column = "prof_id", property = "profId") })
 	List<Classroom> findAllClasses();
@@ -57,7 +57,7 @@ public interface ClassMapper {
 	// 특정 강의실의 출석 시간 정보
 	@Select("""
 			    SELECT start_time, end_time, present_start, present_end, late_end
-			    FROM Class
+			    FROM class
 			    WHERE class_id = #{classId}
 			""")
 	@Results(id = "ClassSettingsResultMap", value = { @Result(property = "startTime", column = "start_time"),
@@ -87,8 +87,8 @@ public interface ClassMapper {
 			        c.prof_id,  -- ✅ VARCHAR 컬럼이므로 String으로 처리해야 함
 			        p.name AS professor_name,
 			        p.email AS professor_email
-			    FROM Class c
-			    JOIN Professor p ON c.prof_id = p.prof_id
+			    FROM class c
+			    JOIN professor p ON c.prof_id = p.prof_id
 			    WHERE c.class_id = #{classId}
 			""")
 	@Results({ @Result(column = "class_id", property = "classId"),
@@ -103,7 +103,7 @@ public interface ClassMapper {
 	@Update("UPDATE Class SET description = #{description} WHERE class_id = #{classId}")
 	void updateClassDescription(@Param("classId") int classId, @Param("description") String description);
 
-	@Select("SELECT present_start, present_end, late_end FROM Class WHERE class_id = #{classId}")
+	@Select("SELECT present_start, present_end, late_end FROM class WHERE class_id = #{classId}")
 	ClassSettings getClassSettings(@Param("classId") int classId);
 	
 	@Update("""
