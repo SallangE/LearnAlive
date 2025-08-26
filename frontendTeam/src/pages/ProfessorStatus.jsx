@@ -16,7 +16,7 @@ const ProfessorStatus = () => {
 
   const fetchProfessors = async () => {
     try {
-      const response = await axios.get("http://localhost:8080/api/professors", {
+      const response = await axios.get("https://learn-alive-5d351ee528be.herokuapp.com/api/professors", {
         headers: { Authorization: `Bearer ${user.token}` },
       });
       setProfessors(response.data);
@@ -53,7 +53,7 @@ const ProfessorStatus = () => {
 
   const handleDeleteProfessor = async (prof_id) => {
     try {
-      const response = await axios.delete(`http://localhost:8080/api/professors/${prof_id}`, {
+      const response = await axios.delete(`https://learn-alive-5d351ee528be.herokuapp.com/api/professors/${prof_id}`, {
         headers: { Authorization: `Bearer ${user.token}` },
       });
       if (response.data.success) {
