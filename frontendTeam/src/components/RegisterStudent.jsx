@@ -34,7 +34,7 @@ const RegisterStudent = () => {
   const fetchUniversities = async () => {
     try {
       // 여기서는 admin API를 사용하고 있지만, 공개 API라면 별도로 구성할 수 있습니다.
-      const response = await axios.get("http://localhost:8080/api/admin/universities");
+      const response = await axios.get("https://learn-alive-5d351ee528be.herokuapp.com/api/admin/universities");
       setUniversities(response.data);
     } catch (error) {
       console.error("대학 목록 조회 실패", error.response?.data || error.message);
@@ -44,7 +44,7 @@ const RegisterStudent = () => {
   // 학과 목록 조회 함수
   const fetchDepartments = async () => {
     try {
-      const response = await axios.get("http://localhost:8080/api/admin/departments");
+      const response = await axios.get("https://learn-alive-5d351ee528be.herokuapp.com/api/admin/departments");
       setDepartments(response.data);
     } catch (error) {
       console.error("학과 목록 조회 실패", error.response?.data || error.message);
@@ -73,7 +73,7 @@ const RegisterStudent = () => {
     }
     try {
       const response = await axios.post(
-        "http://localhost:8080/api/auth/checkStudentId",
+        "https://learn-alive-5d351ee528be.herokuapp.com/api/auth/checkStudentId",
         { studentId: formData.studentId }
       );
       if (response.data.available) {
@@ -113,7 +113,7 @@ const payload = {
 
     try {
       const response = await axios.post(
-        "http://localhost:8080/api/auth/register/student",
+        "https://learn-alive-5d351ee528be.herokuapp.com/api/auth/register/student",
         payload
       );
       alert(response.data.message);

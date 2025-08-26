@@ -54,7 +54,7 @@ export const fetchPreRegistrationCount = async () => {
 
 // ✅ 본 수강신청 추가 API
 export const addFinalRegistration = async ({ studentId, classId }) => {
-  const response = await axios.post(`http://localhost:8080/api/course/final`, {
+  const response = await axios.post(`https://learn-alive-5d351ee528be.herokuapp.com/api/course/final`, {
     studentId,
     classId
   });
@@ -63,7 +63,7 @@ export const addFinalRegistration = async ({ studentId, classId }) => {
 
 // ✅ 본 수강신청 내역 조회
 export const fetchFinalRegisteredCourses = async (studentId) => {
-  const response = await axios.get(`http://localhost:8080/api/course/final/mycourses`, {
+  const response = await axios.get(`https://learn-alive-5d351ee528be.herokuapp.com/api/course/final/mycourses`, {
     params: { studentId }
   });
   const transformed = response.data.map(course => ({

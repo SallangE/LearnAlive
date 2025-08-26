@@ -19,7 +19,7 @@ const Notice = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8080/api/notice")
+      .get("https://learn-alive-5d351ee528be.herokuapp.com/api/notice")
       .then((response) => {
         setNotices(response.data);
       })

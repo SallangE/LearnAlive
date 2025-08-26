@@ -16,10 +16,10 @@ const NotificationListener = ({ userId, updateAlarms }) => {
     }
 
     // toast.info("✅ 토스트 테스트 메시지!");
-    // const socket = new SockJS("http://localhost:8080/ws");
+    // const socket = new SockJS("https://learn-alive-5d351ee528be.herokuapp.com/ws");
 
     const stompClient = new Client({
-      webSocketFactory: () => new SockJS("http://localhost:8080/ws"),
+      webSocketFactory: () => new SockJS("https://learn-alive-5d351ee528be.herokuapp.com/ws"),
       connectHeaders: {
         login: userId, // ✅ 백엔드에서 Principal로 쓸 사용자 ID 전달!
       },

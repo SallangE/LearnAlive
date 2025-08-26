@@ -57,14 +57,14 @@ const CreateProfessor = ({ professor, onClose, onProfessorAdded, onProfessorUpda
       let response;
       if (professor) {
         response = await axios.put(
-          `http://localhost:8080/api/professors/${professor.prof_id}`,
+          `https://learn-alive-5d351ee528be.herokuapp.com/api/professors/${professor.prof_id}`,
           professorData,
           { headers }
         );
         onProfessorUpdated && onProfessorUpdated(response.data);
       } else {
         response = await axios.post(
-          "http://localhost:8080/api/professors/add",
+          "https://learn-alive-5d351ee528be.herokuapp.com/api/professors/add",
           professorData,
           { headers }
         );
