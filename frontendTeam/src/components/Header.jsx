@@ -29,13 +29,13 @@ const Header = () => {
     console.log("현재 로그인한 사용자:", user);
   }, [user]);
 
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     setCurrentTime(new Date());
-  //   }, 1000); // 매초 갱신
+   useEffect(() => {
+     const interval = setInterval(() => {
+       setCurrentTime(new Date());
+     }, 1000); // 매초 갱신
   
-  //   return () => clearInterval(interval); // 언마운트 시 제거
-  // }, []);
+     return () => clearInterval(interval); // 언마운트 시 제거
+   }, []);
 
   useEffect(() => {
     const hasUnread = alarmList.some((n) => n.isRead === false || n.isRead === 0 || n.isRead === "0");
